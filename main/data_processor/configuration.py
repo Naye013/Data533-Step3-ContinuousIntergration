@@ -42,14 +42,18 @@ class Config:
 
         # Check if the file extension corresponds to a valid data type or a close match
         valid_extensions = ['.json', '.xml', '.csv']
-        if file_extension.lower() not in valid_extensions:
-            # Find close matches using difflib
-            close_matches = difflib.get_close_matches(file_extension.lower(), valid_extensions)
-
-            # Display an error message with close matches
-            # print(f"Error: Invalid file type for '{self.path}'. "
-            #      f"Supported types are JSON, XML, and CSV. Close matches: {', '.join(close_matches)}")
-            raise UnsupportedDataType(file_extension)
+        try:
+            
+            if file_extension.lower() not in valid_extensions:
+                # Find close matches using difflib
+                close_matches = difflib.get_close_matches(file_extension.lower(), valid_extensions)
+    
+                # Display an error message with close matches
+                # print(f"Error: Invalid file type for '{self.path}'. "
+                #      f"Supported types are JSON, XML, and CSV. Close matches: {', '.join(close_matches)}")
+                raise UnsupportedDataType(file_extension)
+        except UnsupportedDataType as e :
+            raise UnsupportedDataType(e)
         return True
 
     def read_config(self):
