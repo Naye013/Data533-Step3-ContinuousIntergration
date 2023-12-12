@@ -75,7 +75,7 @@ class DataManagerFactoryTest(unittest.TestCase):
                 mock_parse.return_value = self.mockentitycollection
                 self.data_manager_factory.call_parser()
         self.assertEqual(len(self.data_manager_factory.parsers), 3, "test failed")
-        self.assertEqual(self.data_manager_factory.parsers, JsonParser, "test failed")
+        self.assertEqual(self.data_manager_factory.parsers[0], JsonParser, "test failed")
     def tearDown(self):
         """
         Helps to delete test_parser
