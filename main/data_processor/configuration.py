@@ -50,7 +50,6 @@ class Config:
             # print(f"Error: Invalid file type for '{self.path}'. "
             #      f"Supported types are JSON, XML, and CSV. Close matches: {', '.join(close_matches)}")
             raise UnsupportedDataType(file_extension)
-            #return False
         return True
 
     def read_config(self):
