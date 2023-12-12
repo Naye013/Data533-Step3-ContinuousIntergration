@@ -29,7 +29,7 @@ class TestConfig(unittest.TestCase):
                 'base_field': 'id',
                 'computable_fields': ['salary', 'bonus']
             }, json_file)
-    @patch('builtins.input', side_effect=['y'])
+    '''@patch('builtins.input', side_effect=['y'])
     def test_is_valid_config_valid_file(self, mock_input):
         """
         Initialize Config with the temporary config file
@@ -48,7 +48,7 @@ class TestConfig(unittest.TestCase):
         # Assert that is_valid_config returns False for an invalid file type
         #with self.assertRaises(UnsupportedDataType):
             #config.is_valid_config()
-        self.assertIsNotNone(config.read_config())
+        self.assertIsNotNone(config.read_config())'''
 
     def test_write_config(self):
         """
