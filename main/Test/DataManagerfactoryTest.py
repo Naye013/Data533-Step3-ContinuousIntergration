@@ -74,7 +74,7 @@ class DataManagerFactoryTest(unittest.TestCase):
             with mock.patch("data_transformer.csv_parser.CsvParser.parse") as mock_parse:
                 mock_parse.return_value = self.mockentitycollection
                 self.data_manager_factory.call_parser()
-        self.assertEqual(self.data_manager_factory.parsers, 3, "test failed")
+        self.assertEqual(len(self.data_manager_factory.parsers), 3, "test failed")
         self.assertEqual(self.data_manager_factory.parsers, JsonParser, "test failed")
     def tearDown(self):
         """
