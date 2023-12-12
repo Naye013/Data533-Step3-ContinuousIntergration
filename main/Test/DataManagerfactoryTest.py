@@ -4,6 +4,8 @@ from data_transformer.json_parser import JsonParser
 from unittest import mock
 from data_processor.entity import EntityCollection as EC
 from data_transformer.data_manager_factory import DataManagerFactory as DMF
+from data_transformer.custom_exception import EmptyData as ED
+
 
 class DataManagerFactoryTest(unittest.TestCase):
     @classmethod
@@ -60,13 +62,13 @@ class DataManagerFactoryTest(unittest.TestCase):
         entityCollection = self.data_manager_factory.call_parser()
 
         self.setUp()
-        with self.assertRaises(Exception):
+        with self.assertRaises(ED):
             self.mockentitycollection.items = []
             with mock.patch("data_transformer.csv_parser.CsvParser.parse") as mock_parse:
                 mock_parse.return_value = self.mockentitycollection
                 self.data_manager_factory.call_parser()
         self.setUp()
-        with self.assertRaises(Exception):
+        with self.assertRaises(ED):
             self.mockentitycollection.items = []
             self.mockentitycollection.add("Kalpana",{})
             with mock.patch("data_transformer.csv_parser.CsvParser.parse") as mock_parse:
