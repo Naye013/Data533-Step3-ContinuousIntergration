@@ -1,47 +1,50 @@
+
+![Main badge](https://github.com/Naye013/Data533-Step3-ContinuousIntergration/actions/workflows/main.yml/badge.svg)
+
 # Python Package Performance Analysis System
 
-This is a customization analysis system that supports multiple data (JSON, XML, CSV) that has capability to configure and used among multiple domain.
+This is a customization analysis system that supports multiple data formats (JSON, XML, CSV) and has the capability to be configured and used across multiple domains.
 
 ### Description
 
-The Performance Analysis System is a flexible project developed by students in Master of Data Science Program at UBC-O, to extract data from various sources such as CSV, JSON, and XML files to provide meaningful statistical metrics and plots to help customers from different fields tom visualize performance.
-The configuration in the system helps user to input their needs. The system fetches the data from configured data source and does data processing accordingly to visualize it and extract the information if required. The visualization part include table (mean, median, mode, count, min and max), bar plot, line chart, scatter plot and box plot. The user can either choose to see it or export it.
+The Performance Analysis System is a versatile project developed by students in the Master of Data Science Program at UBC-O. It extract data from various sources including CSV, JSON, and XML files, to generate meaningful statistical metrics and plots. This system aims to assist customers from different fields in visualize performance.   
+
+The configuration in the system allows user to input their needs. The system fetches the data from the configured data source and process it accordingly to visualize and extract information if required. The visualization part include a table with basic statiscical metrics (mean, median, mode, count, min and max), bar plot, line chart, scatter plot, and box plot. Users can choose to display the results either on the terminal or export the analysis.   
 
 ### Package structure
 
-* |main/
-* |   |  data_processor
-* |   |   | configuration.py
-* |   |   | entity.py
-* |   |   | performanceanalyzer.py
-* |   |  data_transformer
-* |   |   | data_manager_factory.py
-* |   |   | abstract_parser.py 
-* |   |   | transformer-csv_parser.py
-* |   |   | xml_parser.py
-* |   |   | json_parser.py
-* |   |   | custom_exception.py
+* **main/**
+  * **data_processor/**
+    * `configuration.py`
+    * `entity.py`
+    * `performanceanalyzer.py`
+  * **data_transformer/**
+    * `data_manager_factory.py`
+    * `abstract_parser.py`
+    * `transformer-csv_parser.py`
+    * `xml_parser.py`
+    * `json_parser.py`
+    * `custom_exception.py`
 
-
-- `package-main` The main package facilitates the entire setup process, such as retrieving the configuration and prompting the user to choose the information to compute and/or visualize.
-- `subpackage1-\main\data_processor` The main sub-package provides a structured and modular approach to handling data. It ensures that the necessary configuration is in place before performing data operations.
-- `subpackage1-module1 \main\data_processor\configuration.py` This module provides a structured and modular approach to handling data. It ensures that the necessary configuration is in place before performing data operations.
-- `subpackage1-module2 \main\data_processor\entity.py` This module processes entities and collections (e.g. student-students, employee-employees, etc.).
-- `subpackage1-module3 \main\data_processor\performanceanalyzer.py` This module generates a summary of basic statistical metrics for the data from the entity collection. It also facilitates the creation of appropriate plots.
-- `subpackage2-\main\data_trasformer` This main function of this sub-package is to co-ordinate and control data parsing and data transformation from user data type to Entity Collection type.  
-- `subpackage2-module1 \main\data_trasformer\data_manager_factory.py` It helps to invoke the respective parser depending on the data type of the input configuration.
-- `subpackage2-module2 \main\data_trasformer\abstract_parser.py` This class serves as a parent class which is inherited by all the other parsers classes. It helps to parse and evaluate expression in configuraion.
-- `subpackage2-module3 \main\data_trasformer\csv_parser.py` This class is responsible for parsing  CSV data into Entity Collection.
-- `subpackage2-module4 \main\data_trasformer\xml_parser.py` This class is responsible for parsing  XML data into Entity Collection.
-- `subpackage2-module4 \main\data_trasformer\json_parser.py` This class is responsible for parsing  JSON data into Entity Collection.
+- **`package-main`:** The main package facilitates the entire setup process, such as retrieving the configuration and prompting the user to choose the information to compute and/or visualize.
+- **`subpackage1-\main\data_processor`:** The main package facilitates the entire setup process, such as retrieving the configuration and prompting the user to choose the information to compute and/or visualize.
+- **`subpackage1-module1 \main\data_processor\configuration.py`:** This module provides a structured and modular approach to handling data. It ensures that the necessary configuration is in place before performing data operations.
+- **`subpackage1-module2 \main\data_processor\entity.py`:** This module processes entities and collections (e.g. student-students, employee-employees, etc.).
+- **`subpackage1-module3 \main\data_processor\performanceanalyzer.py`:** This module generates a summary of basic statistical metrics for the data from the entity collection. It also facilitates the creation of appropriate plots.
+- **`subpackage2-\main\data_trasformer`:** This main function of this sub-package is to co-ordinate and control data parsing and data transformation from user data type to Entity Collection type.  
+- **`subpackage2-module1 \main\data_trasformer\data_manager_factory.py`:** It helps to invoke the respective parser depending on the data type of the input configuration.
+- **`subpackage2-module2 \main\data_trasformer\abstract_parser.py`:** This class serves as a parent class which is inherited by all the other parsers classes. It helps to parse and evaluate expression in configuraion.
+- **`subpackage2-module3 \main\data_trasformer\csv_parser.py`:** This class is responsible for parsing  CSV data into Entity Collection.
+- **`subpackage2-module4 \main\data_trasformer\xml_parser.py`:** This class is responsible for parsing  XML data into Entity Collection.
+- **`subpackage2-module4 \main\data_trasformer\json_parser.py`:** This class is responsible for parsing  JSON data into Entity Collection.
 
 ### How to use the package
 
 1. Download the package and store in your working repository.
 
-2. If you want to create config you can follow step 3. If not the system creates a config on behalf of you. So you can directly go to step 4.
+2. If you want to create a configuration file you can follow step 3. If not the system creates a configuration file on behalf of you. So you can directly go to step 4.
 
-3. In your current working directory create a json file with name `config.json`.
+3. In your current working directory create a JSON file with name `config.json`.
 
    Sample Config data:
 
@@ -60,31 +63,32 @@ The configuration in the system helps user to input their needs. The system fetc
     
   }
 ```
+Description from the fields within the config.json:
 
-3.0.  data_type: this property denotes what type of data source file you have.
+- **data_type:** This property denotes what type of data source file you have.
     
-3.1.  entity_collection: this denotes the sample data collection name present in data file.
+- **entity_collection:** This property denotes the sample data collection name that is present in data file (e.g. Students, Employees, Players, etc.).
     
-3.2. base_field: the field which can be considered X axis field for visualization.
+- **base_field:** This is the field that can be considered the X-axis for creating the plots in the visualization (e.g. ID, name, key, etc.).
     
-3.3. computable_fields: the operational fields on which caulations can be computed. As of now, we support only +, -, /, * with 2 variables.
+- **computable_fields:** These are the operational fields on which caulations can be computed. As of now, we support only +, -, /, * with 2 variables.
     
-3.4. path: the data source path.
+- **path:** The data source path.
 
     
-4. Import the package in your code and call run method. The main package name is "main" and initial process starts with method run(). So you can use below code to run the package.
+4. Import the package in your code and call the run method. The main package name is "main" and initial process starts with method run(). So you can use below code to run the package.
 
    `from main import run` 
 
     `run()`
   
 
-5. If you haven't filled config, then system prompts to enter the config data.
+5. If you have not filled the configuration file, then system will prompt you to enter the configuration data.
 
 
-6. After processing the data, you can choose to see the data or export it.
+6. After processing the data, you can choose to display the analysis of your data or export it.
 
-7. Sample Data(incase you want for testing):
+7. Sample Data (in case you want for testing):
    
 ```    {
       "students": [
