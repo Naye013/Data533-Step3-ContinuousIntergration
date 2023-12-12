@@ -39,8 +39,8 @@ class DataManagerFactory:
                     if self.__is_empty__(entityCollection):
                         raise ED(self.config.path)
                     return entityCollection
-        except Exception as e:
-            raise Exception(e)
+        except ED as e:
+            raise ED(e)
 
     def __is_empty__(self, entityCollection):
         """
