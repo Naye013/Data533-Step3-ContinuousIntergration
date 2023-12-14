@@ -42,7 +42,7 @@ The configuration in the system allows user to input their needs. The system fet
 
 1. Download the package and store in your working repository.
 
-https://pypi.org/project/myPerformanceAnalyzer/
+https://pypi.org/project/PerformanceAnalyzerSystem/
 
 3. If you want to create a configuration file you can follow step 3. If not the system creates a configuration file on behalf of you. So you can directly go to step 4.
 
@@ -79,9 +79,7 @@ Description from the fields within the config.json:
 
     
 4. Once the package is installed, import the package in your code to run the PerformanceAnalyzer. The main package name is "main" and initial process starts. So you can use below code to run the package.
-
-   import sys   
-   sys.path.append("/PerformanceAnalyzer/src/main")    
+  
    import main    
 
 6. If you have not filled the configuration file, then system will prompt you to enter the configuration data.
