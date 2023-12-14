@@ -22,7 +22,7 @@ class Config:
         self.base_field = ''
         self.computable_fields = []
         self.path = ""
-        self.config_data = self.read_config()
+        #self.config_data = self.read_config()
 
     def is_valid_config(self):
         """
@@ -34,12 +34,13 @@ class Config:
         config_path = os.path.join(os.getcwd(), "config.json")
         # Check if the file path exists
         if not os.path.exists(config_path):
-            print(f"Error: File '{config_path}' does not exist.")
+            #print(f"Error: File '{config_path}' does not exist.")
             return False
 
         # Extract the file extension
         _, file_extension = os.path.splitext(self.path)
-
+        if self.__is_empty():
+            return False
         # Check if the file extension corresponds to a valid data type or a close match
         valid_extensions = ['.json', '.xml', '.csv']
         try:
@@ -109,8 +110,10 @@ class Config:
         Helps to write a config and store it in current directory
         :return: none
         """
+        if not self.is_valid_config():
+            raise Exception("Invalid Configuration. Please Check")
         config_val = {
-            "data_type": self.data_type,
+            "data_type": self.data_type.upper(),
             "entity_collection": self.entity_collection,
             "base_field": self.base_field,
             "computable_fields": self.computable_fields,
@@ -120,3 +123,11 @@ class Config:
         os.makedirs(os.path.dirname(config_path), exist_ok=True)
         with open(config_path, 'w') as json_file:
             json.dump(config_val, json_file, indent=4)
+
+    def __is_empty(self):
+        """
+        Helps to check if the config is present
+        """
+        if not self.data_type or not self.path or not self.entity_collection or not self.computable_fields or not self.base_field:
+            return True
+        return False
