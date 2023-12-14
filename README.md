@@ -76,44 +76,43 @@ Description from the fields within the config.json:
 - **path:** The data source path.
 
     
-4. Import the package in your code and call the run method. The main package name is "main" and initial process starts with method run(). So you can use below code to run the package.
+4. Once the package is installed, import the package in your code to run the PerformanceAnalyzer. The main package name is "main" and initial process starts. So you can use below code to run the package.
 
-   `from main import run` 
+   import sys   
+   sys.path.append("/PerformanceAnalyzer/src/main")    
+   import main    
 
-    `run()`
-  
-
-5. If you have not filled the configuration file, then system will prompt you to enter the configuration data.
+6. If you have not filled the configuration file, then system will prompt you to enter the configuration data.
 
 
-6. After processing the data, you can choose to display the analysis of your data or export it.
+7. After processing the data, you can choose to display the analysis of your data or export it.
 
-7. Sample Data (in case you want for testing):
+8. Sample Data (in case you want for testing):
    
-```    {
-      "students": [
-        {
-          "name": "John Doe",
-          "english": 90,
-          "science": 85
-        },
-        {
-          "name": "Jane Smith",
-          "english": 95,
-          "science": 92
-        },
-        {
-          "name": "Bob Johnson",
-          "english": 88,
-          "science": 78
-        },
-        {
-          "name": "Karl",
-          "english": 92,
-          "science": 94
-        }
-      ]
-    }
+```
+{"students": [
+       {
+         "name": "John Doe",
+         "english": 90,
+         "science": 85
+       },
+       {
+         "name": "Jane Smith",
+         "english": 95,
+         "science": 92
+       },
+       {
+         "name": "Bob Johnson",
+         "english": 88,
+         "science": 78
+       },
+       {
+         "name": "Karl",
+         "english": 92,
+         "science": 94
+       }
+     ]
+   }
 ```
 ### Authors
 
