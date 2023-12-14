@@ -86,6 +86,7 @@ def run():
         handle_display(config)
 
 #Test
+"""
 config = Config()
 print_title()
 #config.read_config()
@@ -96,3 +97,4 @@ else:
     print(LINE)
     print(LINE)
     handle_display(config)
+"""
