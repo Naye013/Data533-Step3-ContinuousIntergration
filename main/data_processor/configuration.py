@@ -22,7 +22,9 @@ class Config:
         self.base_field = ''
         self.computable_fields = []
         self.path = ""
-        #self.config_data = self.read_config()
+        self.config_path = os.path.join(os.getcwd(), "config.json")
+        if os.path.exists(self.config_path):
+            self.config_data = self.read_config()
 
     def is_valid_config(self):
         """
