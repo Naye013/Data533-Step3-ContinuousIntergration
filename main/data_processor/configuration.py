@@ -110,7 +110,7 @@ class Config:
         Helps to write a config and store it in current directory
         :return: none
         """
-        if not self.is_valid_config():
+        if self.__is_empty():
             raise Exception("Invalid Configuration. Please Check")
         config_val = {
             "data_type": self.data_type.upper(),
