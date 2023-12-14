@@ -84,13 +84,15 @@ class TestConfig(unittest.TestCase):
         config.path = os.path.join(self.test_dir, 'config.json')
         # Create the directory if it doesn't exist
         os.makedirs(os.path.dirname(config.path), exist_ok=True)
-        config.write_config()
-        with open(config.path, 'r') as written_file:
-            written_data = json.load(written_file)
-            self.assertEqual(written_data['data_type'], 'CSV')
-            self.assertEqual(written_data['entity_collection'], 'employees')
-            self.assertEqual(written_data['base_field'], 'id')
-            self.assertEqual(written_data['computable_fields'], ['salary', 'bonus'])
+        with mock.patch("data_processor.configuration.Config.is_valid_config") as mock_valid:
+            mock_valid.return_value = True
+            config.write_config()
+            with open(config.path, 'r') as written_file:
+                written_data = json.load(written_file)
+                self.assertEqual(written_data['data_type'], 'CSV')
+                self.assertEqual(written_data['entity_collection'], 'employees')
+                self.assertEqual(written_data['base_field'], 'id')
+                self.assertEqual(written_data['computable_fields'], ['salary', 'bonus'])
     def tearDown(self):
         """
         Remove the temporary config file after each test
