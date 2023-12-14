@@ -4,6 +4,7 @@ from data_processor.configuration import Config
 import shutil
 import os
 import json
+from unittest import mock
 from data_transformer.custom_exception import UnsupportedDataType
 class TestConfig(unittest.TestCase):
     """
@@ -16,6 +17,12 @@ class TestConfig(unittest.TestCase):
         """
         cls.test_dir = os.path.join(os.getcwd(), 'test_config')
         os.makedirs(cls.test_dir, exist_ok=True)
+        cls.test_config = Config()
+        cls.test_config.path = "test.json"
+        cls.test_config.entity_collection = "students"
+        cls.test_config.data_type = "JSON"
+        cls.test_config.computable_fields = "math"
+        cls.test_config.base_field = "name"
     def setUp(self):
         """
         Create a temporary config file for testing
@@ -49,7 +56,22 @@ class TestConfig(unittest.TestCase):
         #with self.assertRaises(UnsupportedDataType):
             #config.is_valid_config()
         self.assertIsNotNone(config.read_config())'''
+    def test_config_is_valid(self):
+        with mock.patch("os.path.exists") as mock_exist:
+            mock_exist.return_value = True
+            self.assertTrue(self.test_config.is_valid_config())
+            self.test_config.path ="Test.json"
+            self.assertTrue(self.test_config.is_valid_config())
 
+        with mock.patch("os.path.exists") as mock_exist:
+            mock_exist.return_value = False
+            self.assertFalse(self.test_config.is_valid_config())
+
+        with self.assertRaises(UnsupportedDataType):
+            with mock.patch("os.path.exists") as mock_exist:
+                mock_exist.return_value = True
+                self.test_config.path = "Test.txt"
+                self.test_config.is_valid_config()
     def test_write_config(self):
         """
         Read the written config file and check if the values match

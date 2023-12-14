@@ -42,10 +42,12 @@ def get_config(config):
     """
     print("Your Config is empty. So please enter below values which creates a new new config file")
     config.data_type = input("Please enter data_type: ")
+    config.data_type = config.data_type.upper()
     config.entity_collection = input("Please enter entity_collection_name: ")
     config.base_field = input("Please enter base_field: ")
     config.path = input("Please enter path: ")
-    config.computable_fields = input("Please enter computable_fields: ").split(',')
+    computable_fields = input("Please enter computable_fields: ")
+    config.computable_fields = [field.strip() for field in computable_fields.split(',')]
     config.write_config()
 
 def handle_display(config):
@@ -54,6 +56,7 @@ def handle_display(config):
     :param config: config
     :return: None
     """
+    config.read_config()
     user_input = get_user_option()
     validate(user_input)
     factory = DataManagerFactory(config)
@@ -73,7 +76,7 @@ def run():
     """
     config = Config()
     print_title()
-    config.read_config()
+    # config.read_config()
     if config.is_valid_config():
         handle_display(config)
     else:
@@ -85,7 +88,7 @@ def run():
 #Test
 config = Config()
 print_title()
-config.read_config()
+#config.read_config()
 if config.is_valid_config():
     handle_display(config)
 else:
