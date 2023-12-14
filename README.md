@@ -42,9 +42,11 @@ The configuration in the system allows user to input their needs. The system fet
 
 1. Download the package and store in your working repository.
 
-2. If you want to create a configuration file you can follow step 3. If not the system creates a configuration file on behalf of you. So you can directly go to step 4.
+https://pypi.org/project/myPerformanceAnalyzer/
 
-3. In your current working directory create a JSON file with name `config.json`.
+3. If you want to create a configuration file you can follow step 3. If not the system creates a configuration file on behalf of you. So you can directly go to step 4.
+
+4. In your current working directory create a JSON file with name `config.json`.
 
    Sample Config data:
 
