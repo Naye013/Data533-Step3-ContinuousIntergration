@@ -42,7 +42,7 @@ The configuration in the system allows user to input their needs. The system fet
 
 1. Download the package and store in your working repository.
 
-https://pypi.org/project/PerformanceAnalyzerSystem/
+https://pypi.org/project/PerformanceAnalyzerSystem02/
 
 3. If you want to create a configuration file you can follow step 3. If not the system creates a configuration file on behalf of you. So you can directly go to step 4.
 
@@ -80,8 +80,12 @@ Description from the fields within the config.json:
     
 4. Once the package is installed, import the package in your code to run it. The main package name is "main" and initial process starts. So you can use the code below to run the package.
   
-  -  **from main import run**        
-  -  **run()**     
+     **'from main import run'**
+   
+     Note: In case you experience problems importing the package please use:
+    
+     'import sys'      
+     'sys.path.append(r'/.../anaconda3/lib/python3.11/site-packages/main')'      
 
 6. If you have not filled the configuration file, then system will prompt you to enter the configuration data.
 
