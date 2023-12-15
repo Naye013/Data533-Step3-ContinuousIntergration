@@ -1,3 +1,5 @@
+import os
+
 from data_transformer.data_manager_factory import DataManagerFactory
 from data_processor.performanceAnalizer import Performance_Analyzer
 from data_processor.configuration import Config
@@ -90,6 +92,8 @@ def handle_display(config):
         analyzer.display(entityCollection)
     else:
         analyzer.export(entityCollection)
+        print("Your exported file can be found in path: {}".format(os.path.join(os.getcwd(), "Summary.pdf")))
+
 
 
 def run():

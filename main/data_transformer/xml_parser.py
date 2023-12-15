@@ -34,7 +34,7 @@ class XmlParser(Parser):
         entities = root.findall(self.config.entity_collection)
         fields = self.get_computable_fields()
         parsed_expressions = self.get_parsed_expression()
-        self.entityCollection.fields = list(fields) + [expression[3] for expression in self.get_parsed_expression()]
+        self.entityCollection.fields = list(fields) + [expression[2] for expression in self.get_parsed_expression()]
         for entity in entities:
             entity_object = self.entityCollection.add_entity(entity.find(self.config.base_field).text)
             self.__handle_normal_fields__(entity, fields, entity_object)
@@ -64,7 +64,7 @@ class XmlParser(Parser):
         """
         for expression in parsed_expressions:
             self.evaluate_expression(entity.find(expression[0]).text, entity.find(expression[1]).text,
-                                     expression[3], expression[4], entity_object)
+                                     expression[2], expression[3], entity_object)
 
     def __validate__(self):
         """
