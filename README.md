@@ -78,9 +78,10 @@ Description from the fields within the config.json:
 - **path:** The data source path.
 
     
-4. Once the package is installed, import the package in your code to run the PerformanceAnalyzer. The main package name is "main" and initial process starts. So you can use below code to run the package.
+4. Once the package is installed, import the package in your code to run it. The main package name is "main" and initial process starts. So you can use the code below to run the package.
   
-   import main    
+  -  **from main import run**        
+  -  **run()**     
 
 6. If you have not filled the configuration file, then system will prompt you to enter the configuration data.
 
