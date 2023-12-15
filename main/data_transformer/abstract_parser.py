@@ -112,14 +112,21 @@ class Parser:
         This a simple helper class that stores the mathematical operands into existing expression list
         and store it in expression_collection.
 
+        The first line in the method is to attend the behavioral difference of regex package
+        in different editors and different environments.
+        Issue: In certain environment, after parsing 'A+B As C' returns A, B, C
+        while in others it returns A, B As C. So to address this, 'As' is checked and removed from list
+
         Adding operand into the list is useful when comes to calculating it.
         Also, this is made as a separate method for readability.
         As in previous methods adding + to match might confuse the readers.
 
-        :param expression_collection(list of string): [A,B,As,C]
+        :param expression_collection(list of string): [A,B,As,C] or [A,B,C]
         :param function(string): +
         :return: None
         """
+        expression_collection = [content for content in expression_collection if content.lower() != 'as']
+
         expression_collection.append(function)
         self.__parsed_expression_collection__.append(expression_collection)  
         

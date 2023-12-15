@@ -32,7 +32,7 @@ class CsvParser(Parser):
         data = self.__validate__()
         fields = self.get_computable_fields()
         parsed_expressions = self.get_parsed_expression()
-        self.entityCollection.fields = list(fields) + [expression[3] for expression in self.get_parsed_expression()]
+        self.entityCollection.fields = list(fields) + [expression[2] for expression in self.get_parsed_expression()]
         for row in data:
             entity_object = self.entityCollection.add_entity(row[self.config.base_field])
             self.__handle_normal_fields__(row, fields, entity_object)
@@ -62,7 +62,7 @@ class CsvParser(Parser):
         """
         for expression in parsed_expressions:
             self.evaluate_expression(row[expression[0]], row[expression[1]],
-                                     expression[3], expression[4], entity_object)
+                                     expression[2], expression[3], entity_object)
 
     def __validate__(self):
         """
