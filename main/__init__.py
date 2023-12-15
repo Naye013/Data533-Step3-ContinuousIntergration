@@ -69,9 +69,10 @@ def get_config(config):
     confirmation = input("Are you sure you want to proceed? (yes/no): ").lower()
     if confirmation != 'yes':
         print("Configuration process canceled.")
-        return
+        return False
         
     config.write_config()
+    return True
 
 def handle_display(config):
     """
@@ -103,10 +104,14 @@ def run():
     if config.is_valid_config():
         handle_display(config)
     else:
-        get_config(config)
+        config_successful = get_config(config)
         print(LINE)
         print(LINE)
-        handle_display(config)
+
+        if config_successful:
+            handle_display(config)
+        else:
+            print("Exiting the Performance Analyzer System.")
 
 #Test
 """
