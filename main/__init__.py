@@ -2,7 +2,7 @@ from data_transformer.data_manager_factory import DataManagerFactory
 from data_processor.performanceAnalizer import Performance_Analyzer
 from data_processor.configuration import Config
 
-LINE = "-----------------------------"
+LINE = "-----------------------------------------------------------"
 
 def print_title():
     """
@@ -15,24 +15,24 @@ def print_title():
 
 def get_user_option():
     """
-    Helps to get user oprion
+    Helps to get user option
     :return(string): User option
     """
     print("OPTIONS: ")
     print("1. Summary")
-    print("2. Export Pdf")
+    print("2. Export PDF")
     print(LINE)
-    return input("Choose any one of the below options: ")
+    return input("Please choose any one of the options below: ")
 
 def validate(user_input):
     """
     Helps to validate user input.
-    If the user input is not 1 0r 2 throws error
+    If the user input is not 1 or 2 throws error
     :param user_input: user_input
     :return: None
     """
     if user_input not in ['1', '2']:
-        raise ValueError("Please Enter valid options.")
+        raise ValueError("Please enter a valid option.")
 
 def get_config(config):
     """
@@ -40,14 +40,37 @@ def get_config(config):
     :param config: config
     :return: None
     """
-    print("Your Config is empty. So please enter below values which creates a new new config file")
-    config.data_type = input("Please enter data_type: ")
-    config.data_type = config.data_type.upper()
-    config.entity_collection = input("Please enter entity_collection_name: ")
-    config.base_field = input("Please enter base_field: ")
-    config.path = input("Please enter path: ")
-    computable_fields = input("Please enter computable_fields: ")
-    config.computable_fields = [field.strip() for field in computable_fields.split(',')]
+    print("Your configuration file is empty.")
+    print("Please enter the values below to create a new configuration file: ")
+
+    # Function to validate user input
+    def validate_input(value):
+        return value is not None and value.strip() != ''
+
+    # Keep asking for input until valid values are provided
+    while not validate_input(config.data_type):
+        config.data_type = input("Please enter a data_type: ").upper()
+
+    while not validate_input(config.entity_collection):
+        config.entity_collection = input("Please enter an entity_collection_name: ")
+
+    while not validate_input(config.base_field):
+        config.base_field = input("Please enter a base_field: ")
+
+    while not validate_input(config.path):
+        config.path = input("Please enter path: ")
+
+    computable_fields = ''
+    while not validate_input(computable_fields):
+        computable_fields = input("Please enter the computable_fields: ")
+        config.computable_fields = [field.strip() for field in computable_fields.split(',')]
+
+    # Ask the user for confirmation to proceed
+    confirmation = input("Are you sure you want to proceed? (yes/no): ").lower()
+    if confirmation != 'yes':
+        print("Configuration process canceled.")
+        return
+        
     config.write_config()
 
 def handle_display(config):

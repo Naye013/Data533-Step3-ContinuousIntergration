@@ -140,6 +140,11 @@ class Performance_Analyzer:
         summary_data = [entity_collection.compute_mean(field), entity_collection.compute_mode(field),
                         entity_collection.compute_median(field), entity_collection.compute_min(field),
                         entity_collection.compute_max(field), entity_collection.compute_count(field)]
+        
+        # Check if all values in summary_data are numeric
+        if not all(isinstance(value, (int, float)) for value in summary_data):
+            raise TypeError("One or more values in summary_data is not a numeric type.")
+
         summary_data = np.array([summary_data])
         df = pd.DataFrame(summary_data, columns=metrics_labels)
         summary_table = axs[0, 0].table(cellText=df.values,
