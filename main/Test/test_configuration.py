@@ -72,6 +72,25 @@ class TestConfig(unittest.TestCase):
                 mock_exist.return_value = True
                 self.test_config.path = "Test.txt"
                 self.test_config.is_valid_config()
+                
+    def test_read_config(self):
+        """
+        Helps to test read Config
+        """
+        config_data = { 'path': 'example.csv', 
+                       'data_type': 'CSV',
+                       'entity_collection': 'employees',
+                        'base_field': 'id', 
+                       'computable_fields': ['salary', 'bonus']
+                      }
+        with mock.patch("os.getcwd") as mockcwd:
+            mockcwd.return_value = "test"
+            with patch('builtins.open', mock_open(read_data=json.dumps(config_data))):
+                self.test_config.read_config()
+                self.assertEqual(self.test_config.path,"example.csv")
+                self.assertEqual(self.test_config.data_type,"CSV")
+                self.assertEqual(self.test_config.entity_collection,"employees")
+                self.assertEqual(self.test_config.base_field,"id")
     def test_write_config(self):
         """
         Read the written config file and check if the values match
