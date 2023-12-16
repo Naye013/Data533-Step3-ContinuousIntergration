@@ -81,6 +81,8 @@ Description from the fields within the config.json:
 4. Once the package is installed, import the package in your code to run it. The main package name is "main" and initial process starts. So you can use the code below to run the package.
   
      **'from main import run'**
+     To start the system use:
+     **run()**
    
      Note: In case you experience problems importing the package please use:
     
