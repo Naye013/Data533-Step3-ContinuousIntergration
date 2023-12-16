@@ -1,5 +1,5 @@
 import unittest
-from unittest.mock import patch
+from unittest.mock import patch, mock_open
 from data_processor.configuration import Config
 import shutil
 import os
@@ -57,6 +57,9 @@ class TestConfig(unittest.TestCase):
             #config.is_valid_config()
         self.assertIsNotNone(config.read_config())'''
     def test_config_is_valid(self):
+        """
+        Helps to test is_valid method
+        """
         with mock.patch("os.path.exists") as mock_exist:
             mock_exist.return_value = True
             self.assertTrue(self.test_config.is_valid_config())
